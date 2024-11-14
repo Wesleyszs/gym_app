@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gym_app/screens/login_screen.dart';
 import 'package:gym_app/screens/register_screen.dart';
+import 'package:gym_app/screens/home_screen.dart'; // Adicione a importação da tela Home
 
 void main() {
   runApp(MyApp());
@@ -17,6 +18,7 @@ class MyApp extends StatelessWidget {
       home: LoginScreen(),
       routes: {
         '/register': (context) => RegisterScreen(),
+        '/home': (context) => HomeScreen(), // Adicione a rota para a tela Home
       },
     );
   }
