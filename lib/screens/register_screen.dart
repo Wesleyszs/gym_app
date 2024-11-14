@@ -12,10 +12,26 @@ class _RegisterScreenState extends State<RegisterScreen> {
   final TextEditingController crefController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController senhaController = TextEditingController();
+  final TextEditingController confirmacaoSenhaController = TextEditingController();
+  bool concordaTermos = false;
 
   Future<void> register() async {
+    if (!concordaTermos) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text('Você deve concordar com os termos para se registrar.'),
+      ));
+      return;
+    }
+
+    if (senhaController.text != confirmacaoSenhaController.text) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text('As senhas não coincidem.'),
+      ));
+      return;
+    }
+
     final response = await http.post(
-      Uri.parse('http://10.0.2.2:5000/register'),  // Use 10.0.2.2 para emulador Android
+      Uri.parse('http://10.0.2.2:5000/register'),
       headers: {'Content-Type': 'application/json'},
       body: json.encode({
         'nome_completo': nomeController.text,
@@ -40,33 +56,90 @@ class _RegisterScreenState extends State<RegisterScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Cadastro Profissional'),
+        title: Text('GYMLAB ACADEMY'),
       ),
       body: Padding(
-        padding: EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(16.0),
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
+            Text(
+              'CADASTRO',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            SizedBox(height: 20),
             TextField(
               controller: nomeController,
-              decoration: InputDecoration(labelText: 'Nome completo'),
+              decoration: InputDecoration(
+                labelText: 'Nome completo',
+                border: OutlineInputBorder(),
+              ),
             ),
+            SizedBox(height: 20),
             TextField(
               controller: crefController,
-              decoration: InputDecoration(labelText: 'Matrícula CREF'),
+              decoration: InputDecoration(
+                labelText: 'MATRICULA CREF',
+                border: OutlineInputBorder(),
+              ),
             ),
+            SizedBox(height: 20),
             TextField(
               controller: emailController,
-              decoration: InputDecoration(labelText: 'Email'),
+              decoration: InputDecoration(
+                labelText: 'E-mail',
+                border: OutlineInputBorder(),
+              ),
             ),
+            SizedBox(height: 20),
             TextField(
               controller: senhaController,
-              decoration: InputDecoration(labelText: 'Senha'),
+              decoration: InputDecoration(
+                labelText: 'Senha',
+                border: OutlineInputBorder(),
+              ),
               obscureText: true,
+            ),
+            SizedBox(height: 20),
+            TextField(
+              controller: confirmacaoSenhaController,
+              decoration: InputDecoration(
+                labelText: 'Confirmação de senha',
+                border: OutlineInputBorder(),
+              ),
+              obscureText: true,
+            ),
+            SizedBox(height: 20),
+            Row(
+              children: [
+                Checkbox(
+                  value: concordaTermos,
+                  onChanged: (value) {
+                    setState(() {
+                      concordaTermos = value ?? false;
+                    });
+                  },
+                ),
+                Expanded(
+                  child: Text('Eu concordo com os termos'),
+                ),
+              ],
             ),
             SizedBox(height: 20),
             ElevatedButton(
               onPressed: register,
               child: Text('Registrar'),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: Text('já tem uma conta? entrar'),
             ),
           ],
         ),

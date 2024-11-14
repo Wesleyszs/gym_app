@@ -13,7 +13,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   Future<void> login() async {
     final response = await http.post(
-      Uri.parse('http://10.0.2.2:5000/login'),  // Use 10.0.2.2 para emulador Android
+      Uri.parse('http://10.0.2.2:5000/login'),
       headers: {'Content-Type': 'application/json'},
       body: json.encode({
         'email': emailController.text,
@@ -36,32 +36,55 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Login Profissional'),
+        title: Text('GYMLAB ACADEMY'),
       ),
       body: Padding(
-        padding: EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(16.0),
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
+            Text(
+              'FAÇA SEU LOGIN',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            SizedBox(height: 20),
             TextField(
               controller: emailController,
-              decoration: InputDecoration(labelText: 'Email'),
+              decoration: InputDecoration(
+                labelText: 'Digite seu E-mail',
+                border: OutlineInputBorder(),
+              ),
             ),
+            SizedBox(height: 20),
             TextField(
               controller: senhaController,
-              decoration: InputDecoration(labelText: 'Senha'),
+              decoration: InputDecoration(
+                labelText: 'Senha',
+                border: OutlineInputBorder(),
+              ),
               obscureText: true,
             ),
             SizedBox(height: 20),
             ElevatedButton(
               onPressed: login,
-              child: Text('Login'),
+              child: Text('Acessar'),
             ),
-            SizedBox(height: 20),
-            ElevatedButton(
+            TextButton(
+              onPressed: () {
+                // Lógica para esquecer senha
+              },
+              child: Text('esqueceu sua senha? clique aqui'),
+            ),
+            TextButton(
               onPressed: () {
                 Navigator.pushNamed(context, '/register');
               },
-              child: Text('Registrar-se'),
+              child: Text('não tem uma conta? cadastre-se'),
             ),
           ],
         ),
