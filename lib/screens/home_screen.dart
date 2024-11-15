@@ -3,6 +3,10 @@ import 'package:table_calendar/table_calendar.dart';
 import 'package:gym_app/screens/crud_screen.dart'; // Adicione a importação da tela CRUD
 
 class HomeScreen extends StatefulWidget {
+  final int profissionalId;
+
+  const HomeScreen({Key? key, required this.profissionalId}) : super(key: key);
+
   @override
   _HomeScreenState createState() => _HomeScreenState();
 }
@@ -10,13 +14,13 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   DateTime _focusedDay = DateTime.now();
   DateTime? _selectedDay;
-  Map<DateTime, bool> _markedDates = {}; // Map to store marked dates
+  final Map<DateTime, bool> _markedDates = {}; // Map to store marked dates
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('CONSULTAS MARCADAS'),
+        title: const Text('CONSULTAS MARCADAS'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -47,14 +51,14 @@ class _HomeScreenState extends State<HomeScreen> {
                     return Container(
                       width: 30,
                       height: 30,
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                         color: Colors.red,
                         shape: BoxShape.circle,
                       ),
                       child: Center(
                         child: Text(
                           '${day.day}',
-                          style: TextStyle(color: Colors.white),
+                          style: const TextStyle(color: Colors.white),
                         ),
                       ),
                     );
@@ -62,13 +66,13 @@ class _HomeScreenState extends State<HomeScreen> {
                     return Center(
                       child: Text(
                         '${day.day}',
-                        style: TextStyle(color: Colors.black),
+                        style: const TextStyle(color: Colors.black),
                       ),
                     );
                   }
                 },
               ),
-              calendarStyle: CalendarStyle(
+              calendarStyle: const CalendarStyle(
                 outsideDaysVisible: false,
               ),
             ),
@@ -96,7 +100,7 @@ class _HomeScreenState extends State<HomeScreen> {
             // Navega para a tela CRUD quando o ícone de perfil é clicado
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => CrudScreen()),
+              MaterialPageRoute(builder: (context) => CrudScreen(profissionalId: widget.profissionalId)),
             );
           }
         },

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-import 'home_screen.dart';  // Importação da tela de Home
+import 'package:gym_app/screens/home_screen.dart'; // Importação da tela de Home
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -22,17 +22,21 @@ class _LoginScreenState extends State<LoginScreen> {
       }),
     );
 
+    final data = json.decode(response.body);
+
     if (response.statusCode == 200) {
+      final profissionalId = data['id']; // Supondo que o ID do profissional seja retornado no login
+
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        content: Text('Login realizado com sucesso!'),
+        content: Text(data['message']),
       ));
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => HomeScreen()),  // Navega para a HomeScreen
+        MaterialPageRoute(builder: (context) => HomeScreen(profissionalId: profissionalId)),  // Navega para a HomeScreen com o ID do profissional
       );
     } else {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        content: Text('Credenciais inválidas!'),
+        content: Text(data['message']),
       ));
     }
   }
@@ -83,13 +87,13 @@ class _LoginScreenState extends State<LoginScreen> {
               onPressed: () {
                 // Lógica para esquecer senha
               },
-              child: Text('esqueceu sua senha? clique aqui'),
+              child: Text('Esqueceu sua senha? Clique aqui'),
             ),
             TextButton(
               onPressed: () {
                 Navigator.pushNamed(context, '/register');
               },
-              child: Text('não tem uma conta? cadastre-se'),
+              child: Text('Não tem uma conta? Cadastre-se'),
             ),
           ],
         ),

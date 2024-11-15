@@ -3,6 +3,10 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 class CadastroPacienteScreen extends StatefulWidget {
+  final int profissionalId; // Adicione o profissionalId como argumento
+
+  const CadastroPacienteScreen({Key? key, required this.profissionalId}) : super(key: key);
+
   @override
   _CadastroPacienteScreenState createState() => _CadastroPacienteScreenState();
 }
@@ -36,16 +40,17 @@ class _CadastroPacienteScreenState extends State<CadastroPacienteScreen> {
         'objetivo': objetivoController.text,
         'fumante': fumanteController.text,
         'sono': sonoController.text,
+        'profissional_id': widget.profissionalId, // Adicione o profissionalId aqui
       }),
     );
 
     if (response.statusCode == 200) {
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
         content: Text('Aluno cadastrado com sucesso!'),
       ));
       Navigator.pop(context);  // Volta para a tela anterior
     } else {
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
         content: Text('Erro ao cadastrar aluno!'),
       ));
     }
@@ -55,7 +60,7 @@ class _CadastroPacienteScreenState extends State<CadastroPacienteScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Cadastro de Aluno'),
+        title: const Text('Cadastro de Aluno'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -63,95 +68,95 @@ class _CadastroPacienteScreenState extends State<CadastroPacienteScreen> {
           children: [
             TextField(
               controller: nomeController,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 labelText: 'Nome Completo',
                 border: OutlineInputBorder(),
               ),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             TextField(
               controller: idadeController,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 labelText: 'Idade',
                 border: OutlineInputBorder(),
               ),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             TextField(
               controller: pesoController,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 labelText: 'Peso',
                 border: OutlineInputBorder(),
               ),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             TextField(
               controller: alturaController,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 labelText: 'Altura',
                 border: OutlineInputBorder(),
               ),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             TextField(
               controller: condicoesController,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 labelText: 'Condições Médicas/Cirurgias',
                 border: OutlineInputBorder(),
               ),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             TextField(
               controller: lesoesController,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 labelText: 'Lesões/Problemas Musculares',
                 border: OutlineInputBorder(),
               ),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             TextField(
               controller: experienciaController,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 labelText: 'Nível de Experiência',
                 border: OutlineInputBorder(),
               ),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             TextField(
               controller: frequenciaController,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 labelText: 'Frequência de Treino Semanal',
                 border: OutlineInputBorder(),
               ),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             TextField(
               controller: objetivoController,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 labelText: 'Objetivo com o Treino',
                 border: OutlineInputBorder(),
               ),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             TextField(
               controller: fumanteController,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 labelText: 'Você fuma?',
                 border: OutlineInputBorder(),
               ),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             TextField(
               controller: sonoController,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 labelText: 'Horas de Sono por Noite',
                 border: OutlineInputBorder(),
               ),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             ElevatedButton(
               onPressed: salvarCadastro,
-              child: Text('Salvar'),
+              child: const Text('Salvar'),
             ),
           ],
         ),

@@ -10,6 +10,10 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
+  final int profissionalId = 1;
+
+  const MyApp({Key? key}) : super(key: key); // Defina o ID do profissional logado aqui
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -20,9 +24,9 @@ class MyApp extends StatelessWidget {
       home: LoginScreen(),
       routes: {
         '/register': (context) => RegisterScreen(),
-        '/home': (context) => HomeScreen(),
-        '/crud': (context) => CrudScreen(),
-        '/cadastro_paciente': (context) => CadastroPacienteScreen(),
+        '/home': (context) => HomeScreen(profissionalId: profissionalId),
+        '/crud': (context) => CrudScreen(profissionalId: profissionalId),
+        '/cadastro_paciente': (context) => CadastroPacienteScreen(profissionalId: profissionalId),
       },
     );
   }

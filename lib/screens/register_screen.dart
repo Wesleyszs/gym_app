@@ -3,6 +3,8 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 class RegisterScreen extends StatefulWidget {
+  const RegisterScreen({Key? key}) : super(key: key);
+
   @override
   _RegisterScreenState createState() => _RegisterScreenState();
 }
@@ -17,14 +19,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   Future<void> register() async {
     if (!concordaTermos) {
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
         content: Text('Você deve concordar com os termos para se registrar.'),
       ));
       return;
     }
 
     if (senhaController.text != confirmacaoSenhaController.text) {
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
         content: Text('As senhas não coincidem.'),
       ));
       return;
@@ -42,11 +44,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
     );
 
     if (response.statusCode == 200) {
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
         content: Text('Profissional registrado com sucesso!'),
       ));
     } else {
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
         content: Text('Erro ao registrar!'),
       ));
     }
@@ -56,7 +58,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('GYMLAB ACADEMY'),
+        title: const Text('GYMLAB ACADEMY'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -64,7 +66,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Text(
+            const Text(
               'CADASTRO',
               textAlign: TextAlign.center,
               style: TextStyle(
@@ -72,49 +74,49 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 fontWeight: FontWeight.bold,
               ),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             TextField(
               controller: nomeController,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 labelText: 'Nome completo',
                 border: OutlineInputBorder(),
               ),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             TextField(
               controller: crefController,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 labelText: 'MATRICULA CREF',
                 border: OutlineInputBorder(),
               ),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             TextField(
               controller: emailController,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 labelText: 'E-mail',
                 border: OutlineInputBorder(),
               ),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             TextField(
               controller: senhaController,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 labelText: 'Senha',
                 border: OutlineInputBorder(),
               ),
               obscureText: true,
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             TextField(
               controller: confirmacaoSenhaController,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 labelText: 'Confirmação de senha',
                 border: OutlineInputBorder(),
               ),
               obscureText: true,
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             Row(
               children: [
                 Checkbox(
@@ -125,21 +127,21 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     });
                   },
                 ),
-                Expanded(
+                const Expanded(
                   child: Text('Eu concordo com os termos'),
                 ),
               ],
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             ElevatedButton(
               onPressed: register,
-              child: Text('Registrar'),
+              child: const Text('Registrar'),
             ),
             TextButton(
               onPressed: () {
                 Navigator.pop(context);
               },
-              child: Text('já tem uma conta? entrar'),
+              child: const Text('já tem uma conta? entrar'),
             ),
           ],
         ),
