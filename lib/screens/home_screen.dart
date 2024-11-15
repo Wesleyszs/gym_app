@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:table_calendar/table_calendar.dart';
-import 'package:gym_app/screens/crud_screen.dart'; // Adicione a importação da tela CRUD
+import 'package:gym_app/screens/crud_screen.dart';
+import 'package:gym_app/screens/exercicio_screen.dart'; // Importe a tela de exercícios
 
 class HomeScreen extends StatefulWidget {
   final int profissionalId;
 
-  const HomeScreen({Key? key, required this.profissionalId}) : super(key: key);
+  HomeScreen({required this.profissionalId});
 
   @override
   _HomeScreenState createState() => _HomeScreenState();
@@ -14,13 +15,13 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   DateTime _focusedDay = DateTime.now();
   DateTime? _selectedDay;
-  final Map<DateTime, bool> _markedDates = {}; // Map to store marked dates
+  Map<DateTime, bool> _markedDates = {}; // Map to store marked dates
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('CONSULTAS MARCADAS'),
+        title: Text('CONSULTAS MARCADAS'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -51,14 +52,14 @@ class _HomeScreenState extends State<HomeScreen> {
                     return Container(
                       width: 30,
                       height: 30,
-                      decoration: const BoxDecoration(
+                      decoration: BoxDecoration(
                         color: Colors.red,
                         shape: BoxShape.circle,
                       ),
                       child: Center(
                         child: Text(
                           '${day.day}',
-                          style: const TextStyle(color: Colors.white),
+                          style: TextStyle(color: Colors.white),
                         ),
                       ),
                     );
@@ -66,13 +67,13 @@ class _HomeScreenState extends State<HomeScreen> {
                     return Center(
                       child: Text(
                         '${day.day}',
-                        style: const TextStyle(color: Colors.black),
+                        style: TextStyle(color: Colors.black),
                       ),
                     );
                   }
                 },
               ),
-              calendarStyle: const CalendarStyle(
+              calendarStyle: CalendarStyle(
                 outsideDaysVisible: false,
               ),
             ),
@@ -86,17 +87,23 @@ class _HomeScreenState extends State<HomeScreen> {
             label: 'Home',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.notifications),
-            label: 'Notifications',
+            icon: Icon(Icons.fitness_center),
+            label: 'Exercícios',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.person),
-            label: 'Profile',
+            label: 'Perfil',
           ),
         ],
         currentIndex: 0, // Mantenha o índice inicial como Home
         onTap: (index) {
-          if (index == 2) {
+          if (index == 1) {
+            // Navega para a tela de exercícios quando o ícone é clicado
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => ExercicioScreen(profissionalId: widget.profissionalId)),
+            );
+          } else if (index == 2) {
             // Navega para a tela CRUD quando o ícone de perfil é clicado
             Navigator.push(
               context,

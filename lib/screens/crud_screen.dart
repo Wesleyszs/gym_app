@@ -14,11 +14,16 @@ class CrudScreen extends StatefulWidget {
 
 class _CrudScreenState extends State<CrudScreen> {
   List<Map<String, dynamic>> alunos = [];
+  List<Map<String, dynamic>> filteredAlunos = [];
+  TextEditingController searchController = TextEditingController();
 
   @override
   void initState() {
     super.initState();
     fetchAlunos();
+    searchController.addListener(() {
+      filterAlunos();
+    });
   }
 
   Future<void> fetchAlunos() async {
@@ -26,12 +31,27 @@ class _CrudScreenState extends State<CrudScreen> {
     if (response.statusCode == 200) {
       setState(() {
         alunos = List<Map<String, dynamic>>.from(json.decode(response.body));
+        filteredAlunos = alunos;
       });
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('Erro ao carregar alunos!')),
       );
     }
+  }
+
+  void filterAlunos() {
+    List<Map<String, dynamic>> results = [];
+    if (searchController.text.isEmpty) {
+      results = alunos;
+    } else {
+      results = alunos.where((aluno) =>
+        aluno['nome'].toLowerCase().contains(searchController.text.toLowerCase())).toList();
+    }
+
+    setState(() {
+      filteredAlunos = results;
+    });
   }
 
   Future<void> deleteAluno(int id) async {
@@ -48,6 +68,14 @@ class _CrudScreenState extends State<CrudScreen> {
     }
   }
 
+  Future<void> editAluno(Map<String, dynamic> aluno) async {
+    await Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => CadastroPacienteScreen(profissionalId: widget.profissionalId, aluno: aluno)),
+    );
+    fetchAlunos();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -59,20 +87,25 @@ class _CrudScreenState extends State<CrudScreen> {
         child: Column(
           children: [
             TextField(
+              controller: searchController,
               decoration: InputDecoration(
                 labelText: 'Pesquisar Alunos',
                 border: OutlineInputBorder(),
+                suffixIcon: IconButton(
+                  icon: Icon(Icons.clear),
+                  onPressed: () {
+                    searchController.clear();
+                    filterAlunos();
+                  },
+                ),
               ),
-              onChanged: (value) {
-                // Implementar lógica de pesquisa se necessário
-              },
             ),
             SizedBox(height: 20),
             Expanded(
               child: ListView.builder(
-                itemCount: alunos.length,
+                itemCount: filteredAlunos.length,
                 itemBuilder: (context, index) {
-                  var aluno = alunos[index];
+                  var aluno = filteredAlunos[index];
                   return Card(
                     margin: EdgeInsets.symmetric(vertical: 10),
                     child: Padding(
@@ -99,7 +132,7 @@ class _CrudScreenState extends State<CrudScreen> {
                               IconButton(
                                 icon: Icon(Icons.edit),
                                 onPressed: () {
-                                  // Navega para a tela de editar aluno
+                                  editAluno(aluno);
                                 },
                               ),
                               IconButton(
