@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:table_calendar/table_calendar.dart';
+import 'package:gym_app/screens/crud_screen.dart'; // Adicione a importação da tela CRUD
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -89,6 +90,16 @@ class _HomeScreenState extends State<HomeScreen> {
             label: 'Profile',
           ),
         ],
+        currentIndex: 0, // Mantenha o índice inicial como Home
+        onTap: (index) {
+          if (index == 2) {
+            // Navega para a tela CRUD quando o ícone de perfil é clicado
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => CrudScreen()),
+            );
+          }
+        },
       ),
     );
   }
