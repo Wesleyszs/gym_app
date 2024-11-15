@@ -41,28 +41,35 @@ class _HomeScreenState extends State<HomeScreen> {
                 });
               },
               calendarBuilders: CalendarBuilders(
-                markerBuilder: (context, day, events) {
+                defaultBuilder: (context, day, focusedDay) {
                   if (_markedDates.containsKey(day) && _markedDates[day]!) {
-                    return _buildMarker(day, Colors.red, "INDISPONÍVEL");
-                  } else if (day.isBefore(DateTime.now())) {
-                    return _buildMarker(day, Colors.green, "CONSULTA MARCADA");
+                    return Container(
+                      width: 30,
+                      height: 30,
+                      decoration: BoxDecoration(
+                        color: Colors.red,
+                        shape: BoxShape.circle,
+                      ),
+                      child: Center(
+                        child: Text(
+                          '${day.day}',
+                          style: TextStyle(color: Colors.white),
+                        ),
+                      ),
+                    );
                   } else {
-                    return _buildMarker(day, Colors.white, "LIVRE");
+                    return Center(
+                      child: Text(
+                        '${day.day}',
+                        style: TextStyle(color: Colors.black),
+                      ),
+                    );
                   }
                 },
               ),
               calendarStyle: CalendarStyle(
                 outsideDaysVisible: false,
               ),
-            ),
-            SizedBox(height: 20),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                _buildLegend("INDISPONÍVEL", Colors.red),
-                _buildLegend("CONSULTA MARCADA", Colors.green),
-                _buildLegend("LIVRE", Colors.white),
-              ],
             ),
           ],
         ),
@@ -83,42 +90,6 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ],
       ),
-    );
-  }
-
-  Widget _buildMarker(DateTime day, Color color, String label) {
-    return Container(
-      width: 30,
-      height: 30,
-      margin: const EdgeInsets.all(6.0),
-      decoration: BoxDecoration(
-        color: color,
-        shape: BoxShape.circle,
-      ),
-      child: Center(
-        child: Text(
-          label,
-          style: TextStyle(color: Colors.black, fontSize: 8),
-          textAlign: TextAlign.center,
-        ),
-      ),
-    );
-  }
-
-  Widget _buildLegend(String label, Color color) {
-    return Row(
-      children: [
-        Container(
-          width: 20,
-          height: 20,
-          decoration: BoxDecoration(
-            color: color,
-            shape: BoxShape.circle,
-          ),
-        ),
-        SizedBox(width: 8),
-        Text(label),
-      ],
     );
   }
 }
