@@ -20,3 +20,4 @@ samples, guidance on mobile development, and a full API reference.
 ![Linguagens Usadas](https://github-readme-stats.vercel.app/api/top-langs/?username=Wesleyszs&repo=gym_app&layout=compact)
 
 
+
