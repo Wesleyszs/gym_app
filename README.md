@@ -17,7 +17,8 @@ samples, guidance on mobile development, and a full API reference.
 
 ## Linguagens Utilizadas
 
-![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=Wesleyszs&layout=pie&repo=gym_app)
+![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=Wesleyszs&layout=pie&hide=jupyter%20notebook,tex&repo=gym_app)
+
 
 
 
