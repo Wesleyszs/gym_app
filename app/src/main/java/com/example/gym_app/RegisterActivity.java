@@ -1,8 +1,10 @@
 package com.example.gym_app;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.util.Log;
 import androidx.appcompat.app.AppCompatActivity;
@@ -25,6 +27,7 @@ public class RegisterActivity extends AppCompatActivity {
         password = findViewById(R.id.editTextPassword);
         confirmPassword = findViewById(R.id.editTextConfirmPassword);
         Button buttonRegister = findViewById(R.id.buttonRegister);
+        TextView textViewBackToLogin = findViewById(R.id.textViewBackToLogin);
 
         buttonRegister.setOnClickListener(v -> {
             String userName = name.getText().toString().trim();
@@ -47,11 +50,20 @@ public class RegisterActivity extends AppCompatActivity {
                     Toast.makeText(this, "Registro bem-sucedido", Toast.LENGTH_SHORT).show();
                     Log.d("RegisterActivity", "Registro bem-sucedido para: " + userEmail);
                     // Redirecionar para a tela de login
+                    Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+                    startActivity(intent);
+                    finish();
                 } else {
                     Toast.makeText(this, "Falha no registro", Toast.LENGTH_SHORT).show();
                     Log.d("RegisterActivity", "Falha no registro para: " + userEmail);
                 }
             }
+        });
+
+        textViewBackToLogin.setOnClickListener(v -> {
+            Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+            startActivity(intent);
+            finish();
         });
     }
 }

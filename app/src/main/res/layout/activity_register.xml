@@ -1,6 +1,5 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -8,14 +7,14 @@
     android:gravity="center">
 
     <ImageView
-        android:layout_width="164dp"
-        android:layout_height="116dp"
+        android:layout_width="136dp"
+        android:layout_height="146dp"
         android:src="@drawable/logo_gymlab" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="CADASTRO"
+        android:text="CADASTRO PROFISSIONAL"
         android:textSize="24sp"
         android:gravity="center" />
 
@@ -24,12 +23,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Nome completo" />
-
-    <EditText
-        android:id="@+id/editTextCref"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="MATRICULA CREF" />
 
     <EditText
         android:id="@+id/editTextEmail"
@@ -51,23 +44,17 @@
         android:hint="Confirmação de senha"
         android:inputType="textPassword" />
 
-    <CheckBox
-        android:id="@+id/checkBoxTerms"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Eu concordo com os termos" />
-
     <Button
         android:id="@+id/buttonRegister"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="REGISTRAR" />
+        android:text="Registrar" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Já tem uma conta? Entrar"
+        android:id="@+id/textViewBackToLogin"
         android:gravity="center"
         android:textColor="@android:color/holo_blue_dark" />
-
 </LinearLayout>

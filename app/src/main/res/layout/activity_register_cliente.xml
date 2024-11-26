@@ -7,8 +7,8 @@
     android:gravity="center">
 
     <ImageView
-        android:layout_width="153dp"
-        android:layout_height="136dp"
+        android:layout_width="148dp"
+        android:layout_height="160dp"
         android:src="@drawable/logo_gymlab" />
 
     <TextView
@@ -44,22 +44,17 @@
         android:hint="Confirmação de senha"
         android:inputType="textPassword" />
 
-    <CheckBox
-        android:id="@+id/checkBoxTerms"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Eu concordo com os termos" />
-
     <Button
         android:id="@+id/buttonRegister"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="REGISTRAR" />
+        android:text="Registrar" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Já tem uma conta? Entrar"
+        android:id="@+id/textViewBackToLogin"
         android:gravity="center"
         android:textColor="@android:color/holo_blue_dark" />
 </LinearLayout>
