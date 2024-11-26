@@ -1,0 +1,35 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:id="@+id/main"
+    tools:context=".MainActivity">
+
+
+  <ImageView
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:src="@drawable/logo_gymlab" />
+
+  <TextView
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="BEM VINDO(A)"
+      android:textSize="24sp"
+      android:gravity="center" />
+
+  <Button
+      android:id="@+id/button_profissional"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="Profissional" />
+
+  <Button
+      android:id="@+id/button_aluno"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="Alunos" />
+</LinearLayout>
