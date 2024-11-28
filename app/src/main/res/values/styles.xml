@@ -1,0 +1,7 @@
+<resources>
+    <!-- Outros estilos já definidos -->
+    <style name="CalendarDate">
+        <item name="android:textColor">?attr/colorPrimary</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+</resources>

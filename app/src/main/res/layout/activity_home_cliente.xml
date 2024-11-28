@@ -1,0 +1,264 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="@color/background_color">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="GYMLAB ACADEMIA"
+        android:textSize="24sp"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:textColor="@color/title_color"
+        android:layout_gravity="center_horizontal"
+        android:paddingBottom="24dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="RELATÓRIO SEMANAL"
+        android:textSize="20sp"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:textColor="@color/subtitle_color"
+        android:layout_gravity="center_horizontal"
+        android:paddingBottom="16dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="122dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:paddingBottom="24dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="42dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:text="SEG"
+                android:textColor="@color/checkbox_text_color" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:text="TER"
+                android:textColor="@color/checkbox_text_color" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:text="QUA"
+                android:textColor="@color/checkbox_text_color" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:text="QUI"
+                android:textColor="@color/checkbox_text_color" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:text="SEX"
+                android:textColor="@color/checkbox_text_color" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:text="SAB"
+                android:textColor="@color/checkbox_text_color" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:text="DOM"
+                android:textColor="@color/checkbox_text_color" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <CheckBox
+                android:id="@+id/checkBoxSeg"
+                android:layout_width="30dp"
+                android:layout_height="38dp"
+                android:layout_margin="4dp"
+                android:textColor="@color/checkbox_text_color" />
+
+            <CheckBox
+                android:id="@+id/checkBoxTer"
+                android:layout_width="33dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:textColor="@color/checkbox_text_color" />
+
+            <CheckBox
+                android:id="@+id/checkBoxQua"
+                android:layout_width="25dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:textColor="@color/checkbox_text_color" />
+
+            <CheckBox
+                android:id="@+id/checkBoxQui"
+                android:layout_width="27dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:textColor="@color/checkbox_text_color" />
+
+            <CheckBox
+                android:id="@+id/checkBoxSex"
+                android:layout_width="35dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:textColor="@color/checkbox_text_color" />
+
+            <CheckBox
+                android:id="@+id/checkBoxSab"
+                android:layout_width="34dp"
+                android:layout_height="38dp"
+                android:layout_margin="4dp"
+                android:textColor="@color/checkbox_text_color" />
+
+            <CheckBox
+                android:id="@+id/checkBoxDom"
+                android:layout_width="35dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:textColor="@color/checkbox_text_color" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="O ÚNICO TREINO RUIM É AQUELE QUE VOCÊ NÃO FEZ."
+        android:textSize="16sp"
+        android:gravity="center"
+        android:textColor="@color/quote_text_color"
+        android:layout_gravity="center_horizontal"
+        android:paddingTop="16dp"
+        android:paddingBottom="24dp" />
+
+    <Button
+        android:id="@+id/button_schedule"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/custom_button"
+        android:padding="16dp"
+        android:text="MARCAÇÃO"
+        android:textColor="@color/button_text_color"
+        android:textSize="18sp" />
+
+    <Button
+        android:id="@+id/button_workout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/custom_button"
+        android:padding="16dp"
+        android:text="FICHA"
+        android:textColor="@color/button_text_color"
+        android:textSize="18sp" />
+
+    <Button
+        android:id="@+id/button_reset_report"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Resetar Relatório"
+        android:background="@drawable/custom_button_reset"
+        android:textColor="@color/button_text_color"
+        android:padding="8dp"
+        android:textSize="14sp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="24dp"/>
+
+    <LinearLayout
+        android:id="@+id/consultas_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingTop="16dp"
+        android:paddingBottom="24dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="CONSULTAS MARCADAS"
+            android:textSize="20sp"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:textColor="@color/subtitle_color"
+            android:layout_gravity="center_horizontal"
+            android:paddingBottom="16dp" />
+
+        <TextView
+            android:id="@+id/status_consulta"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Status: Livre"
+            android:textSize="16sp"
+            android:textColor="@color/text_color"
+            android:paddingBottom="8dp" />
+
+        <TextView
+            android:id="@+id/hora_consulta"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Hora: --:--"
+            android:textSize="16sp"
+            android:textColor="@color/text_color"
+            android:paddingBottom="8dp" />
+
+        <TextView
+            android:id="@+id/data_consulta"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Data: --/--/----"
+            android:textSize="16sp"
+            android:textColor="@color/text_color"
+            android:paddingBottom="8dp" />
+
+        <TextView
+            android:id="@+id/profissional_consulta"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Profissional: --"
+            android:textSize="16sp"
+            android:textColor="@color/text_color"
+            android:paddingBottom="8dp" />
+
+        <Button
+            android:id="@+id/cancelar_consulta"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cancelar Consulta"
+            android:background="@drawable/custom_button"
+            android:textColor="@color/button_text_color"
+            android:padding="8dp"
+            android:textSize="14sp"
+            android:layout_gravity="center_horizontal" />
+    </LinearLayout>
+</LinearLayout>

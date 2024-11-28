@@ -1,0 +1,51 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/textViewTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Status da Consulta"
+        android:textSize="18sp"
+        android:gravity="center"
+        android:padding="16dp" />
+
+    <CalendarView
+        android:id="@+id/calendarView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:dateTextAppearance="@style/CalendarDate"
+        android:weekNumberColor="@color/primaryTextColor"
+        android:weekSeparatorLineColor="@color/primaryTextColor" />
+
+    <TimePicker
+        android:id="@+id/timePicker"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:timePickerMode="spinner"
+        android:layout_marginTop="16dp" />
+
+    <Spinner
+        android:id="@+id/spinner_profissionais"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp" />
+
+    <Button
+        android:id="@+id/button_marcar_consulta"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Marcar Consulta"
+        android:layout_marginTop="16dp" />
+
+    <Button
+        android:id="@+id/button_desmarcar_consulta"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Desmarcar Consulta"
+        android:layout_marginTop="16dp" />
+</LinearLayout>

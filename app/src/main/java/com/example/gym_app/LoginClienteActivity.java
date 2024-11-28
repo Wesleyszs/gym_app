@@ -40,7 +40,10 @@ public class LoginClienteActivity extends AppCompatActivity {
             } else if (db.checkCliente(userEmail, userPassword)) {
                 Toast.makeText(this, "Login bem-sucedido", Toast.LENGTH_SHORT).show();
                 Log.d("LoginClienteActivity", "Login bem-sucedido: " + userEmail);
-                // Redirecionar para a tela principal dos clientes
+                // Redirecionar para a tela inicial dos clientes
+                Intent intent = new Intent(LoginClienteActivity.this, HomeClienteActivity.class);
+                startActivity(intent);
+                finish();
             } else {
                 Toast.makeText(this, "Senha incorreta", Toast.LENGTH_SHORT).show();
                 Log.d("LoginClienteActivity", "Senha incorreta para: " + userEmail);

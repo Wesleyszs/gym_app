@@ -1,5 +1,14 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+    <color name="background_color">#FFFFFF</color>
+    <color name="title_color">#000000</color>
+    <color name="subtitle_color">#333333</color>
+    <color name="checkbox_text_color">#555555</color>
+    <color name="quote_text_color">#777777</color>
+    <color name="button_text_color">#FFFFFF</color>
+    <color name="button_color">#FF5722</color>
+    <color name="button_pressed_color">#E64A19</color>
+    <color name="button_reset_color">#757575</color>
+    <color name="button_reset_pressed_color">#616161</color>
+    <color name="primaryTextColor">#000000</color>
+    <color name="text_color">#000000</color> <!-- Adicionando text_color -->
 </resources>
