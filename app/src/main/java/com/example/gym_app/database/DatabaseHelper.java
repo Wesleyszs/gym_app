@@ -80,6 +80,47 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
+    // CRUD Alunos (Clientes)
+
+    // Adicionar cliente
+    public boolean addCliente(String name, String email, String password) {
+        try (SQLiteDatabase db = this.getWritableDatabase()) {
+            ContentValues values = new ContentValues();
+            values.put(COLUMN_USER_NAME, name);
+            values.put(COLUMN_USER_EMAIL, email);
+            values.put(COLUMN_USER_PASSWORD, password);
+            return db.insert(TABLE_CLIENTES, null, values) != -1;
+        }
+    }
+
+    // Atualizar cliente
+    public boolean updateCliente(int id, String name, String email, String password) {
+        try (SQLiteDatabase db = this.getWritableDatabase()) {
+            ContentValues values = new ContentValues();
+            values.put(COLUMN_USER_NAME, name);
+            values.put(COLUMN_USER_EMAIL, email);
+            values.put(COLUMN_USER_PASSWORD, password);
+            int rowsUpdated = db.update(TABLE_CLIENTES, values, COLUMN_USER_ID + " = ?", new String[]{String.valueOf(id)});
+            return rowsUpdated > 0;
+        }
+    }
+
+    // Deletar cliente
+    public boolean deleteCliente(int id) {
+        try (SQLiteDatabase db = this.getWritableDatabase()) {
+            int rowsDeleted = db.delete(TABLE_CLIENTES, COLUMN_USER_ID + " = ?", new String[]{String.valueOf(id)});
+            return rowsDeleted > 0;
+        }
+    }
+
+    // Obter cliente pelo nome
+    public Cursor getClienteByName(String name) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        return db.rawQuery("SELECT * FROM " + TABLE_CLIENTES + " WHERE " + COLUMN_USER_NAME + " = ?", new String[]{name});
+    }
+
+    // Outras operações de banco de dados
+
     // Obter lista de profissionais
     public List<String> getProfissionais() {
         List<String> profissionais = new ArrayList<>();
@@ -165,6 +206,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return db.rawQuery("SELECT * FROM " + TABLE_CONSULTAS + " WHERE " + COLUMN_CONSULTA_DATA + " = ?", new String[]{data});
     }
 
+    // Cancelar consulta com motivo
     public boolean cancelarConsulta(String data, String hora, String profissional, String motivo) {
         try (SQLiteDatabase db = this.getWritableDatabase()) {
             ContentValues values = new ContentValues();
@@ -192,17 +234,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         try (SQLiteDatabase db = this.getReadableDatabase();
              Cursor cursor = db.rawQuery(query, new String[]{email})) {
             return cursor.moveToFirst();
-        }
-    }
-
-    // Adicionar cliente
-    public boolean addCliente(String name, String email, String password) {
-        try (SQLiteDatabase db = this.getWritableDatabase()) {
-            ContentValues values = new ContentValues();
-            values.put(COLUMN_USER_NAME, name);
-            values.put(COLUMN_USER_EMAIL, email);
-            values.put(COLUMN_USER_PASSWORD, password);
-            return db.insert(TABLE_CLIENTES, null, values) != -1;
         }
     }
 
