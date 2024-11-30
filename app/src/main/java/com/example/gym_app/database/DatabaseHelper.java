@@ -11,10 +11,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
-
-    private static final String DATABASE_NAME = "gymlab.db";
-    private static final int DATABASE_VERSION = 3;
-
+    private static final String DATABASE_NAME = "gym_database";  // Nome do banco de dados
+    private static final int DATABASE_VERSION = 1;  // Versão do banco de dados
     // Tabelas
     private static final String TABLE_PROFISSIONAIS = "profissionais";
     private static final String TABLE_CLIENTES = "clientes";
@@ -30,7 +28,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String COLUMN_CONSULTA_ID = "consulta_id";
     private static final String COLUMN_CONSULTA_DATA = "data";
     private static final String COLUMN_CONSULTA_HORA = "hora";
-    private static final String COLUMN_CONSULTA_PROFISSIONAL = "profissional";
+    private static final String COLUMN_CONSULTA_PROFISSIONAL = "profissional"; // Alterei o nome para refletir o nome da coluna
     private static final String COLUMN_CONSULTA_CLIENTE = "cliente";
     private static final String COLUMN_CONSULTA_STATUS = "status";
     private static final String COLUMN_CONSULTA_MOTIVO_CANCELAMENTO = "motivo_cancelamento";
@@ -55,10 +53,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                     COLUMN_CONSULTA_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                     COLUMN_CONSULTA_DATA + " TEXT NOT NULL, " +
                     COLUMN_CONSULTA_HORA + " TEXT NOT NULL, " +
-                    COLUMN_CONSULTA_PROFISSIONAL + " TEXT NOT NULL, " +
+                    COLUMN_CONSULTA_PROFISSIONAL + " INTEGER NOT NULL, " +  // Alterado para INTEGER
                     COLUMN_CONSULTA_CLIENTE + " TEXT NOT NULL, " +
                     COLUMN_CONSULTA_STATUS + " TEXT NOT NULL, " +
-                    COLUMN_CONSULTA_MOTIVO_CANCELAMENTO + " TEXT);";
+                    COLUMN_CONSULTA_MOTIVO_CANCELAMENTO + " TEXT, " +
+                    "FOREIGN KEY(" + COLUMN_CONSULTA_PROFISSIONAL + ") REFERENCES " + TABLE_PROFISSIONAIS + "(" + COLUMN_USER_ID + "));";  // Adicionada a chave estrangeira
 
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -251,4 +250,3 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
     }
 }
-

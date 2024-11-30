@@ -6,11 +6,9 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CalendarView;
 import android.widget.CheckBox;
 import android.widget.TextView;
 import android.widget.Toast;
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.gym_app.database.DatabaseHelper;
@@ -65,21 +63,38 @@ public class HomeClienteActivity extends AppCompatActivity {
         Button buttonResetReport = findViewById(R.id.button_reset_report);
         Button cancelarConsultaButton = findViewById(R.id.cancelar_consulta);
 
+        // Button to navigate to MarcacaoActivity
         buttonSchedule.setOnClickListener(v -> {
             Intent intent = new Intent(HomeClienteActivity.this, MarcacaoActivity.class);
             startActivity(intent);
         });
 
+        // Placeholder button for workouts
         buttonWorkout.setOnClickListener(v -> {
             Toast.makeText(HomeClienteActivity.this, "Em desenvolvimento...", Toast.LENGTH_SHORT).show();
         });
 
+        // Button to reset weekly checkboxes
         buttonResetReport.setOnClickListener(v -> {
             resetCheckBoxStates();
             Toast.makeText(HomeClienteActivity.this, "Relatório semanal resetado", Toast.LENGTH_SHORT).show();
         });
 
+        // Button to cancel the consultation
         cancelarConsultaButton.setOnClickListener(v -> cancelarConsulta());
+
+        // Check if a consultation info was passed from MarcacaoActivity
+        String consultaInfo = getIntent().getStringExtra("consulta_info");
+        if (consultaInfo != null) {
+            statusConsultaTextView.setText("Consulta marcada com sucesso!");
+            profissionalConsultaTextView.setText("Profissional: " + consultaInfo.split(" com ")[1]);
+            horaConsultaTextView.setText("Hora: " + consultaInfo.split(" às ")[1].split(" com ")[0]);
+            dataConsultaTextView.setText("Data: " + consultaInfo.split(" às ")[0]);
+        } else {
+            // Load existing consultation details for today
+            String todayDate = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(Calendar.getInstance().getTime());
+            showConsultaInfo(todayDate);
+        }
     }
 
     private void saveCheckBoxState(String key, boolean isChecked) {
@@ -108,6 +123,7 @@ public class HomeClienteActivity extends AppCompatActivity {
         editor.clear().apply();
     }
 
+    // Method to show the consultation info
     private void showConsultaInfo(String date) {
         Cursor cursor = databaseHelper.getConsultaDetalhes(date);
         if (cursor.moveToFirst()) {
@@ -138,6 +154,7 @@ public class HomeClienteActivity extends AppCompatActivity {
         }
     }
 
+    // Method to cancel a consultation
     private void cancelarConsulta() {
         String data = dataConsultaTextView.getText().toString().split(": ")[1];
         databaseHelper.updateConsulta(data, "", "", "", "livre");

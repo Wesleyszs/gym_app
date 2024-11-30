@@ -1,51 +1,67 @@
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="16dp">
+    tools:context=".MarcacaoActivity">
 
-    <TextView
-        android:id="@+id/textViewTitle"
+    <!-- ScrollView para rolar a tela -->
+    <android.widget.ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Status da Consulta"
-        android:textSize="18sp"
-        android:gravity="center"
-        android:padding="16dp" />
+        android:layout_height="match_parent">
 
-    <CalendarView
-        android:id="@+id/calendarView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:dateTextAppearance="@style/CalendarDate"
-        android:weekNumberColor="@color/primaryTextColor"
-        android:weekSeparatorLineColor="@color/primaryTextColor" />
+        <!-- Layout interno -->
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp">
 
-    <TimePicker
-        android:id="@+id/timePicker"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:timePickerMode="spinner"
-        android:layout_marginTop="16dp" />
+            <!-- DatePicker para escolher a data -->
+            <android.widget.DatePicker
+                android:id="@+id/datePicker"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"/>
 
-    <Spinner
-        android:id="@+id/spinner_profissionais"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp" />
+            <!-- TimePicker para escolher o horário -->
+            <android.widget.TimePicker
+                android:id="@+id/timePicker"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"/>
 
-    <Button
-        android:id="@+id/button_marcar_consulta"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Marcar Consulta"
-        android:layout_marginTop="16dp" />
+            <!-- Spinner para selecionar o profissional -->
+            <android.widget.Spinner
+                android:id="@+id/spinner_profissionais"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"/>
 
-    <Button
-        android:id="@+id/button_desmarcar_consulta"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Desmarcar Consulta"
-        android:layout_marginTop="16dp" />
-</LinearLayout>
+            <!-- Botão para marcar a consulta -->
+            <android.widget.Button
+                android:id="@+id/button_marcar_consulta"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Marcar Consulta"
+                android:layout_marginTop="20dp"/>
+
+            <!-- TextView para status da consulta -->
+            <android.widget.TextView
+                android:id="@+id/textViewTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Status da Consulta"
+                android:textSize="18sp"
+                android:layout_marginTop="20dp"/>
+
+        </LinearLayout>
+
+    </android.widget.ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
